@@ -8,21 +8,44 @@
 
 <body>	
 	<script>
-		function secondHighest(arr) {
-			//Write your code here
-			
+	function secondHighest(arr) {
+		// Convert all elements to numbers (since prompt returns strings)
+		arr = arr.map(Number);
+
+		if (arr.length < 2) return "Array too small";
+
+		let max = -Infinity;
+		let second = -Infinity;
+
+		for (let i = 0; i < arr.length; i++) {
+			let num = arr[i];
+
+			if (num > max) {
+				second = max;
+				max = num;
+			} else if (num > second && num < max) {
+				second = num;
+			}
 		}
 
-		function Main() {
-			var n = prompt("Enter the number of elements");
-			var arr = [];
-			for (var i = 0; i < n; i++) {
-				arr[i] = prompt("Enter element " + (i+1));
-			}
-			alert(secondHighest(arr));
+		if (second === -Infinity) {
+			return "No second highest (all elements might be same)";
 		}
-		Main();
-	</script>
+
+		return second;
+	}
+
+	function Main() {
+		var n = prompt("Enter the number of elements");
+		var arr = [];
+		for (var i = 0; i < n; i++) {
+			arr[i] = prompt("Enter element " + (i + 1));
+		}
+		alert("Second highest: " + secondHighest(arr));
+	}
+	Main();
+</script>
+
 
     <script type="text/javascript" src="./script.js">
 </script>
