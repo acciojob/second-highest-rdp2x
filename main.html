@@ -15,24 +15,26 @@
 		if (arr.length < 2) return "Array too small";
 
 		let max = -Infinity;
-		let second = -Infinity;
+		let secondMax = -Infinity;
 
+		// One pass through the array to find the first and second max
 		for (let i = 0; i < arr.length; i++) {
 			let num = arr[i];
 
 			if (num > max) {
-				second = max;
-				max = num;
-			} else if (num > second && num < max) {
-				second = num;
+				secondMax = max; // The previous max becomes secondMax
+				max = num; // New max
+			} else if (num > secondMax && num < max) {
+				secondMax = num; // Update secondMax
 			}
 		}
 
-		if (second === -Infinity) {
+		// If secondMax is still -Infinity, then no second highest was found
+		if (secondMax === -Infinity) {
 			return "No second highest (all elements might be same)";
 		}
 
-		return second;
+		return secondMax;
 	}
 
 	function Main() {
