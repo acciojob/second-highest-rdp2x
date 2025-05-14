@@ -8,45 +8,49 @@
 
 <body>	
 	<script>
-	function secondHighest(arr) {
-		// Convert all elements to numbers (since prompt returns strings)
-		arr = arr.map(Number);
+    function secondHighest(arr) {
+        // If the array is empty or has only 1 element, return -Infinity
+        if (arr.length < 2) {
+            return -Infinity;
+        }
 
-		if (arr.length < 2) return "Array too small";
+        // Convert all elements to numbers (prompt returns strings)
+        arr = arr.map(Number);
 
-		let max = -Infinity;
-		let secondMax = -Infinity;
+        let max = -Infinity;
+        let secondMax = -Infinity;
 
-		// One pass through the array to find the first and second max
-		for (let i = 0; i < arr.length; i++) {
-			let num = arr[i];
+        // Traverse the array once to find max and second max
+        for (let i = 0; i < arr.length; i++) {
+            let num = arr[i];
 
-			if (num > max) {
-				secondMax = max; // The previous max becomes secondMax
-				max = num; // New max
-			} else if (num > secondMax && num < max) {
-				secondMax = num; // Update secondMax
-			}
-		}
+            if (num > max) {
+                secondMax = max; // Previous max becomes second max
+                max = num; // Update max to the current number
+            } else if (num > secondMax && num < max) {
+                secondMax = num; // Update secondMax
+            }
+        }
 
-		// If secondMax is still -Infinity, then no second highest was found
-		if (secondMax === -Infinity) {
-			return "No second highest (all elements might be same)";
-		}
+        // If secondMax is still -Infinity, no second largest exists
+        if (secondMax === -Infinity) {
+            return -Infinity;
+        }
 
-		return secondMax;
-	}
+        return secondMax;
+    }
 
-	function Main() {
-		var n = prompt("Enter the number of elements");
-		var arr = [];
-		for (var i = 0; i < n; i++) {
-			arr[i] = prompt("Enter element " + (i + 1));
-		}
-		alert("Second highest: " + secondHighest(arr));
-	}
-	Main();
+    function Main() {
+        var n = prompt("Enter the number of elements");
+        var arr = [];
+        for (var i = 0; i < n; i++) {
+            arr[i] = prompt("Enter element " + (i + 1));
+        }
+        alert("Second highest: " + secondHighest(arr));
+    }
+    Main();
 </script>
+
 
 
     <script type="text/javascript" src="./script.js">
